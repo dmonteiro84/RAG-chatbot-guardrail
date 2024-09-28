@@ -1,0 +1,35 @@
+<rail version="0.1">
+    <output>
+        <!-- The chatbot's response to the user -->
+        <string name="response" description="The chatbot's response to the user." />
+    </output>
+    <prompt>
+        The assistant must only provide factual information based on the retrieved knowledge.
+        Do not generate any hallucinated or made-up information.
+        Always ground your responses in the provided product information.
+        The assistant must only discuss topics related to credit cards, home loans, personal loans, or savings accounts.
+        Any response that includes other topics should be rejected.
+    </prompt>
+    <validations>
+        <!-- Validation to ensure the response contains only topics from the whitelist -->
+        <contains_only name="allowed_topics" description="The response must only contain topics from the knowledge base.">
+            <string name="response" />
+            <options>
+                <!-- Add only the allowed topics from the knowledge base here -->
+                <option value="credit card" />
+                <option value="home loan" />
+                <option value="personal loan" />
+                <option value="savings account" />
+                <!-- Add more allowed topics as necessary -->
+            </options>
+        </contains_only>
+        <!-- Validation to ensure the user input and output response are in English -->
+        <language name="english_only" description="Ensure both user query and chatbot response are in English.">
+            <string name="response" />
+            <string name="user_input" />
+            <allowed_languages>
+                <language code="en" />
+            </allowed_languages>
+        </language>
+    </validations>
+</rail>

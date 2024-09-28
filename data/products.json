@@ -1,0 +1,20 @@
+[
+    {
+      "product_name": "Credit Card",
+      "interest_rate": "19.99%",
+      "annual_fee": "$99",
+      "description": "A versatile card for everyday purchases with rewards points."
+    },
+    {
+      "product_name": "Home Loan",
+      "interest_rate": "3.49%",
+      "description": "Flexible home loans with competitive rates and easy repayment options."
+    },
+    {
+      "product_name": "Personal Loan",
+      "interest_rate": "7.99%",
+      "loan_amount": "Up to $50,000",
+      "description": "A personal loan for any occasion with flexible repayment terms."
+    }
+  ]
+  
