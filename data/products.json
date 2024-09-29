@@ -1,20 +1,37 @@
 [
-    {
-      "product_name": "Credit Card",
+  {
+      "product_name": "The Bank Credit Card",
       "interest_rate": "19.99%",
       "annual_fee": "$99",
-      "description": "A versatile card for everyday purchases with rewards points."
-    },
-    {
-      "product_name": "Home Loan",
+      "description": "The Bank's versatile Credit Card is designed for both everyday purchases and exclusive rewards. Whether you're shopping online, dining out, or traveling abroad, this card offers up to 5% cashback on select categories like groceries, dining, and travel. Cardholders can earn points on every purchase that can be redeemed for flights, hotel stays, gift cards, or even cashback directly to your account. Enjoy a complimentary travel insurance package that includes coverage for trip cancellations, lost baggage, and medical emergencies, making this card ideal for frequent travelers. In addition to these perks, The Bank offers a 0% introductory interest rate on balance transfers for the first 12 months, allowing you to consolidate and pay down existing credit card debt. With contactless payment technology and no foreign transaction fees, The Bank Credit Card provides the ultimate convenience for both domestic and international purchases. Cardholders also get access to exclusive events, dining experiences, and entertainment offers through The Bank's Privileges Program. This card includes 24/7 fraud protection, zero liability for unauthorized transactions, and advanced online security features, ensuring your purchases are always safe. With a low annual fee of $99, this credit card is a powerful tool for managing your finances while earning valuable rewards."
+  },
+  {
+      "product_name": "The Bank Home Loan",
       "interest_rate": "3.49%",
-      "description": "Flexible home loans with competitive rates and easy repayment options."
-    },
-    {
-      "product_name": "Personal Loan",
+      "loan_amount": "Up to $1,000,000",
+      "description": "The Bank offers flexible home loans with competitive interest rates starting as low as 3.49%. With a maximum loan amount of up to $1,000,000, The Bank Home Loan is designed to meet the needs of first-time buyers, investors, and families looking to refinance their existing mortgage. The loan comes with flexible repayment options, including weekly, bi-weekly, and monthly payments, and offers the option to make extra repayments at no extra cost, helping you pay off your mortgage sooner. For borrowers with at least a 20% down payment, The Bank provides additional benefits such as a waived lender’s mortgage insurance (LMI) fee, saving you thousands of dollars. The Bank's Home Loan also includes an offset account feature, allowing you to reduce your interest payments by offsetting your savings against your loan balance. Furthermore, The Bank offers a redraw facility, enabling borrowers to access extra repayments made on their loan, providing additional flexibility. Whether you're purchasing your dream home, an investment property, or refinancing an existing mortgage, The Bank's Home Loan is tailored to fit your financial goals."
+  },
+  {
+      "product_name": "The Bank Personal Loan",
       "interest_rate": "7.99%",
       "loan_amount": "Up to $50,000",
-      "description": "A personal loan for any occasion with flexible repayment terms."
-    }
-  ]
-  
+      "description": "The Bank's Personal Loan offers quick access to funds for any occasion, whether it's consolidating existing debts, financing home renovations, covering medical expenses, or planning a special event. Borrowers can take advantage of a fixed interest rate of 7.99% with loan amounts up to $50,000. The loan comes with flexible repayment terms ranging from 1 to 7 years, allowing borrowers to choose a repayment schedule that suits their financial situation. The Bank also offers a unique 'Repayment Holiday' feature, allowing borrowers to pause their payments for up to 2 months in times of financial difficulty. Customers can make extra repayments without any penalties, and access a redraw facility to withdraw any extra funds paid beyond the required repayments. The loan application process is fast and straightforward, with most approvals taking just 24 hours. Additionally, The Bank provides a rate discount for customers with excellent credit scores or those who bundle the loan with other products, such as a transaction account. The loan has no early repayment fees, giving borrowers the freedom to pay off their loan early and save on interest."
+  },
+  {
+      "product_name": "The Bank Savings Account",
+      "interest_rate": "1.25% p.a.",
+      "account_fee": "$0",
+      "description": "The Bank's Savings Account offers a high-interest rate of 1.25% p.a. with no monthly fees, making it a perfect solution for those looking to grow their savings without worrying about hidden costs. Customers can open the account with as little as $100 and enjoy 24/7 access to their funds through The Bank's online and mobile banking platforms. This account includes an automatic savings plan feature, which allows customers to set up recurring transfers from their transaction account to their savings account, helping them meet their financial goals faster. With The Bank Savings Account, you can also receive quarterly interest payments directly into your account, allowing your money to grow even quicker. Furthermore, The Bank rewards loyal savers with a bonus interest rate of 0.25% when no withdrawals are made in a given month, offering additional incentives for building long-term wealth. The Bank's advanced online security features ensure that your funds and personal information are always safe. Whether you're saving for a new home, a vacation, or an emergency fund, The Bank's Savings Account is designed to meet your financial needs."
+  },
+  {
+      "product_name": "The Bank Term Deposit",
+      "interest_rate": "2.75% p.a.",
+      "term_length": "12 months",
+      "description": "The Bank's Term Deposit offers a secure way to grow your savings with a fixed interest rate of 2.75% p.a. for a 12-month term. With a minimum deposit of $5,000, this product is ideal for those looking for a low-risk investment option. The Bank guarantees the interest rate for the full term, protecting your savings from market fluctuations. Customers have the flexibility to choose terms ranging from 3 months to 5 years, with the option to roll over the term deposit upon maturity. The Bank also offers a 'Loyalty Bonus' interest rate increase of 0.10% if you reinvest at the end of your term. Interest can be paid monthly, quarterly, or at maturity, depending on your preference, providing flexibility in managing your cash flow. Additionally, The Bank's Term Deposit comes with an early withdrawal option, though a penalty may apply, ensuring that your funds are accessible in case of emergencies. This product is protected under The Bank's financial guarantee, ensuring that your investment is safe and secure, no matter the market conditions."
+  },
+  {
+      "product_name": "The Bank Transaction Account",
+      "monthly_fee": "$5",
+      "description": "The Bank's Transaction Account is the perfect solution for everyday banking needs, offering easy access to your funds with a low monthly fee of $5. With The Bank's transaction account, customers enjoy unlimited free transactions, including bill payments, direct debits, and online banking transfers. The account comes with a debit card that can be used for purchases at retailers worldwide, supported by a network of over 30,000 ATMs with no withdrawal fees. The Bank offers real-time notifications for account activity, helping you stay on top of your spending. Customers also benefit from a built-in budgeting tool that categorizes your spending and provides detailed reports to help you manage your finances effectively. With The Bank’s advanced security features, including multi-factor authentication and zero liability for unauthorized transactions, you can bank with confidence knowing your funds are protected. Additionally, The Bank offers cashback rewards for spending at select retail partners, adding extra value to your daily purchases. Whether you're managing bills, shopping online, or saving for a big purchase, The Bank Transaction Account is designed to make everyday banking simple and convenient."
+  }
+]
