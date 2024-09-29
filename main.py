@@ -2,7 +2,7 @@ from langdetect import detect, LangDetectException  # Import langdetect for lang
 from src.retrieval import FaissRetriever
 from src.llm import OpenAIGPTWithGuardrails
 from src.guardrail import Guardrails
-from src.evaluation import compute_bertscore, compute_precision_recall, compute_cosine_similarity, compute_kgr  # Import the groundedness metrics
+from src.evaluation import compute_bertscore, compute_cosine_similarity_bert, compute_kgr
 from bert_score import score as bertscore
 
 # Function to preload BERTScore model and tokenizer for evaluation metrics
@@ -77,17 +77,18 @@ def main():
             print(f"Response with Guardrails:\n{response_with_guardrails}")
 
             response_facts = [response_with_guardrails]
-            knowledge_base_facts = ["Example fact 1", "Example fact 2"]
+            knowledge_base_facts = ["The Bank offers home loans with competitive interest rates and flexible repayment options.", 
+                                    "The Bank offers flexible personal loans with fixed rates up to $50,000."]
 
+            # Compute BERTScore
             bertscore_result = compute_bertscore(response_with_guardrails, knowledge_base_facts[0])
             print("BERTScore:", bertscore_result)
 
-            precision_recall_result = compute_precision_recall(response_facts, knowledge_base_facts)
-            print("Precision & Recall:", precision_recall_result)
-
-            cosine_similarity_result = compute_cosine_similarity(response_with_guardrails, knowledge_base_facts[0])
+            # Compute Cosine Similarity using BERT embeddings
+            cosine_similarity_result = compute_cosine_similarity_bert(response_with_guardrails, knowledge_base_facts[0])
             print("Cosine Similarity:", cosine_similarity_result)
 
+            # Compute Knowledge Grounding Ratio (KGR)
             kgr_result = compute_kgr(response_facts, knowledge_base_facts)
             print("KGR:", kgr_result)
 
