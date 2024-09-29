@@ -43,9 +43,13 @@ class OpenAIGPTWithGuardrails:
 
             Example output:
             {{
-                "response": "Here are the details of the products you asked for: 
-                            Product 1: [Product Name], Description: [Description].
-                            Product 2: [Product Name], Description: [Description]."
+                "response": "Sure. Here are some details about [Product Name]: 
+                            [Description].
+                            And about [Product Name]:
+                            [Description]."
+            }},
+            {{
+                "response": "Absolutely! The Bank provides a range of products. Our Credit Cards come with great rewards programs and 0% interest on balance transfers for the first year. We also offer Personal Loans with fixed interest rates and customizable repayment options. And for savers, our Savings Accounts offer 1.25% interest with no monthly fees. Feel free to ask for more details on any of these."
             }}
 
             If the user query is not related to these products, respond with:
@@ -64,7 +68,7 @@ class OpenAIGPTWithGuardrails:
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=200,
+            max_tokens=500,
             temperature=0.7
         )
 

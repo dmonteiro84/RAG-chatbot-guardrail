@@ -41,6 +41,7 @@
             <allowed_languages>
                 <language code="en" />
             </allowed_languages>
+            <reask message="Please provide your query in English." />
         </language>
 
         <!-- Validation to handle out-of-scope topics -->
