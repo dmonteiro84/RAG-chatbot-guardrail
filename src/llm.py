@@ -2,6 +2,7 @@ import openai
 import os
 from src.retrieval import FaissRetriever
 from src.guardrail import Guardrails
+import json
 
 class OpenAIGPTWithGuardrails:
     def __init__(self, retriever, guardrails):
@@ -29,13 +30,34 @@ class OpenAIGPTWithGuardrails:
             f"Product: {p['product_name']}\nDescription: {p['description']}\n" for p in retrieved_products
         ])
 
-        # Create the final prompt for GPT-4
+        # Step 3: Create a controlled prompt for GPT-4, including explicit instructions and an example of the expected format
         prompt = f"""
-           The user asked: '{user_query}'. Based on the following product information, provide a helpful response in JSON format:
-           {product_info}
-           """
+            You are a helpful assistant providing information about bank products.
+            The user asked: '{user_query}'.
 
-        # Step 3: Use OpenAI GPT-4 to generate a response based on the prompt
+            If the user query is related to personal loans, home loans, credit cards, or other banking products, provide a helpful response in the following JSON format:
+
+            {{
+                "response": "Your helpful response text based on the products retrieved."
+            }}
+
+            Example output:
+            {{
+                "response": "Here are the details of the products you asked for: 
+                            Product 1: [Product Name], Description: [Description].
+                            Product 2: [Product Name], Description: [Description]."
+            }}
+
+            If the user query is not related to these products, respond with:
+            {{
+                "response": "I'm sorry, I can only provide information related to personal loans, home loans, credit cards, or other banking products."
+            }}
+
+            Product information:
+            {product_info}
+            """
+
+        # Step 4: Use OpenAI GPT-4 to generate a response based on the prompt
         response = openai.chat.completions.create(
             model="gpt-4",
             messages=[
@@ -46,13 +68,13 @@ class OpenAIGPTWithGuardrails:
             temperature=0.7
         )
 
-        # Step 4: Extract the generated response
-        generated_response = response.choices[0].message.content.strip()
+        # Step 5: Extract the generated response
+        raw_response = response.choices[0].message.content.strip()
 
-        # Step 5: Validate the response using Guardrails
-        validation_outcome = self.guardrails.validate_response(generated_response)
+        # Step 6: Pass the string response to Guardrails for validation
+        validation_outcome = self.guardrails.validate_response(raw_response)
 
-        # Step 6: Build the formatted response
+        # Step 7: Build the formatted response for output
         formatted_response = self.format_validation_outcome(validation_outcome)
 
         return formatted_response

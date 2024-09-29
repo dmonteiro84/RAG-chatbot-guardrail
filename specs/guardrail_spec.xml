@@ -3,33 +3,58 @@
         <!-- The chatbot's response to the user -->
         <string name="response" description="The chatbot's response to the user." />
     </output>
+
     <prompt>
         The assistant must only provide factual information based on the retrieved knowledge.
-        Do not generate any hallucinated or made-up information.
-        Always ground your responses in the provided product information.
-        The assistant must only discuss topics related to credit cards, home loans, personal loans, or savings accounts.
-        Any response that includes other topics should be rejected.
+        Do not generate hallucinated or made-up information.
+        Always ground responses in the provided product information from the knowledge base.
+        The assistant is only allowed to discuss topics related to retail banking products: credit cards, home loans, personal loans, savings accounts, term deposits, and transaction accounts.
+        Any response that includes topics outside this scope must be rephrased or regenerated with a statement like "I'm sorry, I can only provide information on retail banking products."
+        If unsure or if the knowledge base lacks sufficient information, politely inform the user that the requested information is not available.
     </prompt>
+
     <validations>
         <!-- Validation to ensure the response contains only topics from the whitelist -->
-        <contains_only name="allowed_topics" description="The response must only contain topics from the knowledge base.">
+        <contains_only name="allowed_topics" description="The response must only contain topics from the knowledge base." on_fail="reask">
             <string name="response" />
             <options>
-                <!-- Add only the allowed topics from the knowledge base here -->
+                <!-- List of allowed topics as per the task requirements -->
                 <option value="credit card" />
                 <option value="home loan" />
                 <option value="personal loan" />
                 <option value="savings account" />
-                <!-- Add more allowed topics as necessary -->
+                <option value="term deposit" />
+                <option value="transaction account" />
             </options>
         </contains_only>
-        <!-- Validation to ensure the user input and output response are in English -->
-        <language name="english_only" description="Ensure both user query and chatbot response are in English.">
+
+        <!-- Validation to ensure the response is grounded in the knowledge base -->
+        <grounded name="groundedness_check" description="The response must be based on the retrieved information from the knowledge base." on_fail="reask">
+            <string name="response" />
+            <retrieved_source name="retrieved_knowledge" />
+        </grounded>
+
+        <!-- Validation to ensure both user input and output response are in English -->
+        <language name="english_only" description="Ensure both user query and chatbot response are in English." on_fail="reask">
             <string name="response" />
             <string name="user_input" />
             <allowed_languages>
                 <language code="en" />
             </allowed_languages>
         </language>
+
+        <!-- Validation to handle out-of-scope topics -->
+        <out_of_scope name="out_of_scope_detection" description="Detect and handle topics outside the defined scope." on_fail="reask">
+            <string name="response" />
+            <actions>
+                <reask message="I'm sorry, I can only provide information on credit cards, home loans, personal loans, savings accounts, term deposits, and transaction accounts. Please try again." />
+            </actions>
+        </out_of_scope>
+
+        <!-- Validation for toxic language detection -->
+        <custom_validator name="toxic_language_check" description="Check for toxic or inappropriate language." on_fail="reask">
+            <string name="response" />
+            <validator name="toxic-language" threshold="70" model="unitary/toxic-bert" />
+        </custom_validator>
     </validations>
 </rail>
