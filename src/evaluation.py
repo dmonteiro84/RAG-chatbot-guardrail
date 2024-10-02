@@ -11,6 +11,7 @@ from src.llm import OpenAIGPTWithGuardrails
 from src.guardrail import Guardrails
 from src.retrieval import FaissRetriever
 import numpy as np
+import argparse
 
 # Load the SentenceTransformer model for embeddings
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
@@ -53,7 +54,34 @@ def load_or_download_dataset(name, cache_dir='data'):
         dataset = load_dataset(name, cache_dir=cache_dir)
     return dataset
 
-# Function to evaluate true positives, true negatives, false positives, and false negatives
+# Function to evaluate groundedness of custom questions
+def evaluate_groundedness(chatbot_system, questions_data, output_file, retriever):
+    timestamp = datetime.now().isoformat()
+
+    print("Processing groundedness questions:")
+    for category_data in tqdm(questions_data):  # Iterate over each category of questions
+        category = category_data['category']
+        for question in category_data['questions']:
+            query = question
+            response = chatbot_system.retrieve_and_generate_response(query)
+            fact = retriever.retrieve_fact(query)
+
+            bertscore_result = compute_bertscore(response, fact)
+            cosine_similarity_result = compute_cosine_similarity_bert(response, fact)
+
+            result = {
+                "timestamp": timestamp,
+                "dataset_name": "Custom Questions",
+                "category": category,  # Include the category for context
+                "query": query,
+                "raw_llm_output": response,
+                "BERTScore": bertscore_result,
+                "Cosine Similarity": cosine_similarity_result,
+            }
+
+            append_result_to_json(result, output_file)
+
+# Function to evaluate topic filtering
 def evaluate_guardrails_on_datasets(chatbot_system, in_scope_dataset, out_of_scope_dataset, output_file, retriever):
     tp, tn, fp, fn = 0, 0, 0, 0
     guardrail_message = "I'm sorry, I can only provide information related to personal loans, home loans, credit cards, or other banking products."
@@ -82,11 +110,6 @@ def evaluate_guardrails_on_datasets(chatbot_system, in_scope_dataset, out_of_sco
             "dataset_name": "Banking77",
             "query": query,
             "raw_llm_output": response,
-            "validation_summaries": None,
-            "validated_output": response,
-            "reask": None,
-            "validation_passed": not guardrails_out_of_scope_flag,
-            "error": None,
             "BERTScore": bertscore_result,
             "Cosine Similarity": cosine_similarity_result,
             "not_banking_flag": not_banking_flag,
@@ -110,11 +133,6 @@ def evaluate_guardrails_on_datasets(chatbot_system, in_scope_dataset, out_of_sco
             "dataset_name": "WikiQA",
             "query": query,
             "raw_llm_output": response,
-            "validation_summaries": None,
-            "validated_output": response,
-            "reask": None,
-            "validation_passed": guardrails_out_of_scope_flag,
-            "error": None,
             "BERTScore": bertscore_result,
             "Cosine Similarity": cosine_similarity_result,
             "not_banking_flag": not_banking_flag,
@@ -123,11 +141,11 @@ def evaluate_guardrails_on_datasets(chatbot_system, in_scope_dataset, out_of_sco
 
         append_result_to_json(result, output_file)
 
-# Main function for evaluation
 def main():
-    # Load or download the datasets
-    banking77 = load_or_download_dataset('banking77')
-    wiki_qa = load_or_download_dataset('wiki_qa')
+    parser = argparse.ArgumentParser(description="Run evaluation of chatbot system.")
+    parser.add_argument("-t", "--type", required=True, choices=["topic_filter", "groundedness"], help="Specify evaluation type: 'topic_filter' or 'groundedness'.")
+    
+    args = parser.parse_args()
 
     # Initialize FAISS retriever and Guardrails
     retriever = FaissRetriever("data/products.json")
@@ -136,12 +154,20 @@ def main():
     # Initialize chatbot system
     chatbot_system = OpenAIGPTWithGuardrails(retriever, guardrails)
 
-    # Create unique filename with timestamp
+    # Create unique filename with timestamp and chosen type
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    output_file = f"evaluation_results_{timestamp}.json"
+    output_file = f"evaluation_results_{args.type}_{timestamp}.json"
     
-    # Evaluate the datasets and write results to JSON
-    evaluate_guardrails_on_datasets(chatbot_system, banking77, wiki_qa, output_file, retriever)
+    # Handle different evaluation types
+    if args.type == "topic_filter":
+        banking77 = load_or_download_dataset('banking77')
+        wiki_qa = load_or_download_dataset('wiki_qa')
+        evaluate_guardrails_on_datasets(chatbot_system, banking77, wiki_qa, output_file, retriever)
+    elif args.type == "groundedness":
+        # Load questions data from questions.json
+        with open("data/questions.json", 'r') as f:
+            questions_data = json.load(f)
+        evaluate_groundedness(chatbot_system, questions_data, output_file, retriever)
 
 if __name__ == "__main__":
     main()
