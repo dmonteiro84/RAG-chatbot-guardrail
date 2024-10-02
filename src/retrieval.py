@@ -74,6 +74,17 @@ class FaissRetriever:
         # Get the top k products from the knowledge base using the indices returned by FAISS
         results = [self.knowledge_base[i] for i in I[0]]
         return results
+    
+    def retrieve_fact(self, query):
+        """
+        Retrieve the most relevant fact based on the user query.
+        This function performs a search on the FAISS index and returns the top relevant fact.
+        """
+        results = self.search(query)  # Perform search using the FAISS index
+        if results:
+            return results[0]  # Return the top fact from the search results
+        else:
+            return "No relevant facts found."  # Fallback if no results are found
 
 # Example usage:
 if __name__ == "__main__":
@@ -88,4 +99,3 @@ if __name__ == "__main__":
     
     # Print the search results
     print(results)
-    
