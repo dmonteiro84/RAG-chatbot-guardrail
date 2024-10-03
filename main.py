@@ -1,8 +1,7 @@
-from langdetect import detect, LangDetectException  # Import langdetect for language detection
 from src.retrieval import FaissRetriever
 from src.llm import OpenAIGPTWithGuardrails
 from src.guardrail import Guardrails
-from src.evaluation import compute_bertscore, compute_cosine_similarity_bert, compute_kgr
+from src.evaluation import compute_bertscore, compute_cosine_similarity_bert, validate_language  # Import validate_language
 from bert_score import score as bertscore
 
 # Function to preload BERTScore model and tokenizer for evaluation metrics
@@ -11,19 +10,6 @@ def preload_resources():
     # This will load the BERTScore model in advance
     bertscore(["preload"], ["preload"], lang="en", verbose=False)  # Dummy data to trigger model loading
     print("Resources preloaded.")
-
-# Function to validate the input language
-def validate_language(user_query):
-    try:
-        # Detect the language of the input
-        language = detect(user_query)
-        if language != 'en':
-            # If the language is not English, return False with an error message
-            return False, "Please provide your query in English."
-        else:
-            return True, None
-    except LangDetectException:
-        return False, "Could not detect the language. Please try again."
 
 def main():
     # Preload libraries
@@ -66,6 +52,7 @@ def main():
             print("Exiting the program...")
             break
 
+        # Validate the language of the query
         is_valid_language, error_message = validate_language(user_query)
         if not is_valid_language:
             print(error_message)
@@ -87,10 +74,6 @@ def main():
             # Compute Cosine Similarity using BERT embeddings
             cosine_similarity_result = compute_cosine_similarity_bert(response_with_guardrails, knowledge_base_facts[0])
             print("Cosine Similarity:", cosine_similarity_result)
-
-            # Compute Knowledge Grounding Ratio (KGR)
-            kgr_result = compute_kgr(response_facts, knowledge_base_facts)
-            print("KGR:", kgr_result)
 
         except Exception as e:
             print(f"Error generating response with Guardrails: {e}")
