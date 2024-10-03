@@ -1,9 +1,11 @@
 
+# LLM Chatbot with Guardrails
+
 ## Installation
 
 ### Prerequisites
 - **Python 3.8+** installed
-- **OpenAI API Key** (if using GPT-4 via OpenAI)
+- **OpenAI API Key** (for using GPT-4 via OpenAI)
 
 ### Setup
 
@@ -14,7 +16,7 @@
    ```
 
 2. **Install dependencies**:
-   Ensure you have a virtual environment set up and install the dependencies:
+   Set up a virtual environment and install the dependencies:
 
    ```bash
    python -m venv venv
@@ -123,6 +125,7 @@ The system will output the accuracy of the guardrails in flagging invalid respon
 - **Hallucinations**: While the guardrails block off-topic responses, they might not catch subtle hallucinations that still mention the allowed topics but with inaccurate information.
 - **Complex Queries**: Highly complex or ambiguous queries might pass through the guardrails without sufficient validation if the product knowledge base lacks depth.
 - **English Only**: Currently, the chatbot only handles English queries and responses.
+- **No context/chat history**: Currently, the chatbot can not remember what the user said before. Hence, contextual questions can not be tested.
 
 ---
 

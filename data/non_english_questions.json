@@ -1,0 +1,162 @@
+[
+    {
+        "language": "Spanish",
+        "questions": [
+            "¿Cuál es la tasa de interés de la cuenta de ahorros?",
+            "¿Ofrecen un seguro de viaje gratuito con la tarjeta de crédito?",
+            "¿Cuáles son los beneficios de la cuenta corriente?",
+            "¿Puedo realizar transferencias internacionales con esta cuenta?",
+            "¿Cuáles son las comisiones anuales de la tarjeta de crédito?"
+        ]
+    },
+    {
+        "language": "French",
+        "questions": [
+            "Quel est le taux d'intérêt sur le prêt immobilier?",
+            "La carte de crédit offre-t-elle des récompenses de cashback?",
+            "Puis-je rembourser mon prêt personnel plus tôt?",
+            "Quelles sont les conditions pour obtenir un prêt personnel?",
+            "Quel est le montant minimum pour ouvrir un compte d'épargne?"
+        ]
+    },
+    {
+        "language": "German",
+        "questions": [
+            "Wie hoch ist der Zinssatz für das Sparkonto?",
+            "Welche Vorteile bietet die Kreditkarte?",
+            "Kann ich mit diesem Konto internationale Überweisungen durchführen?",
+            "Was sind die monatlichen Gebühren für das Girokonto?",
+            "Welche Konditionen gibt es für das Hypothekendarlehen?"
+        ]
+    },
+    {
+        "language": "Portuguese",
+        "questions": [
+            "Qual é a taxa de juros do cartão de crédito?",
+            "O banco oferece seguro viagem com o cartão de crédito?",
+            "Posso realizar transferências internacionais com minha conta corrente?",
+            "Qual é o limite de crédito oferecido para um empréstimo pessoal?",
+            "Quais são as tarifas mensais da conta poupança?"
+        ]
+    },
+    {
+        "language": "Italian",
+        "questions": [
+            "Qual è il tasso di interesse sul prestito personale?",
+            "La carta di credito offre punti o cashback?",
+            "Quali sono le condizioni per aprire un conto corrente?",
+            "Posso fare trasferimenti internazionali con questo conto?",
+            "Quali sono le commissioni annuali per la carta di credito?"
+        ]
+    },
+    {
+        "language": "Russian",
+        "questions": [
+            "Какой процент по кредитной карте?",
+            "Можно ли получить кешбэк с кредитной карты?",
+            "Какие условия предоставления ипотечного кредита?",
+            "Могу ли я досрочно погасить личный заем?",
+            "Какие льготы предлагаются владельцам счетов?"
+        ]
+    },
+    {
+        "language": "Chinese",
+        "questions": [
+            "信用卡的利率是多少？",
+            "可以通过储蓄账户进行国际转账吗？",
+            "信用卡是否提供旅行保险？",
+            "存款账户的最低余额要求是多少？",
+            "借记卡有哪些附加费用？"
+        ]
+    },
+    {
+        "language": "Japanese",
+        "questions": [
+            "クレジットカードの年会費はいくらですか？",
+            "貯蓄口座の利率はどれくらいですか？",
+            "個人ローンの金利は何パーセントですか？",
+            "旅行保険はクレジットカードに含まれていますか？",
+            "国際送金はこの口座で可能ですか？"
+        ]
+    },
+    {
+        "language": "Arabic",
+        "questions": [
+            "ما هي الفائدة على الحساب الجاري؟",
+            "هل يقدم البنك تأمينًا مجانيًا على السفر مع بطاقة الائتمان؟",
+            "ما هي الرسوم الشهرية لحساب التوفير؟",
+            "هل يمكنني سداد قرض شخصي مبكرًا؟",
+            "ما هي رسوم التحويلات الدولية؟"
+        ]
+    },
+    {
+        "language": "Korean",
+        "questions": [
+            "신용카드의 이자율은 얼마인가요?",
+            "여행 보험이 신용카드에 포함되어 있나요?",
+            "이 통장에서 해외 송금을 할 수 있나요?",
+            "개인 대출 금리는 어떻게 되나요?",
+            "저축 계좌 개설에 필요한 최소 금액은 얼마인가요?"
+        ]
+    },
+    {
+        "language": "Dutch",
+        "questions": [
+            "Wat is de rente op de spaarrekening?",
+            "Biedt de creditcard cashback op aankopen?",
+            "Kan ik internationale overboekingen doen met deze rekening?",
+            "Wat zijn de jaarlijkse kosten van de creditcard?",
+            "Welke voordelen heeft een persoonlijke lening?"
+        ]
+    },
+    {
+        "language": "Swedish",
+        "questions": [
+            "Vilken ränta gäller för sparkontot?",
+            "Erbjuder kreditkortet reseförsäkring?",
+            "Kan jag göra internationella överföringar med detta konto?",
+            "Vad är årsavgiften för kreditkortet?",
+            "Vilka förmåner har ett privatlån?"
+        ]
+    },
+    {
+        "language": "Turkish",
+        "questions": [
+            "Kredi kartının faiz oranı nedir?",
+            "Kredi kartı ile nakit para iadesi yapılabilir mi?",
+            "Bu hesapla uluslararası para transferi yapabilir miyim?",
+            "Tasarruf hesabı için aylık ücret var mı?",
+            "Banka kredisi için ne kadar faiz ödenir?"
+        ]
+    },
+    {
+        "language": "Greek",
+        "questions": [
+            "Ποιο είναι το επιτόκιο της πιστωτικής κάρτας;",
+            "Προσφέρει η πιστωτική κάρτα επιστροφή χρημάτων;",
+            "Ποιες είναι οι χρεώσεις για διεθνείς μεταφορές;",
+            "Μπορώ να κάνω πρόωρη εξόφληση του προσωπικού δανείου;",
+            "Ποιες είναι οι ετήσιες χρεώσεις για τον λογαριασμό ταμιευτηρίου;"
+        ]
+    },
+    {
+        "language": "Hindi",
+        "questions": [
+            "क्रेडिट कार्ड पर ब्याज दर क्या है?",
+            "क्या क्रेडिट कार्ड से कैशबैक मिलता है?",
+            "क्या मैं इस खाते से अंतरराष्ट्रीय लेन-देन कर सकता हूँ?",
+            "इस बचत खाते पर मासिक शुल्क क्या है?",
+            "क्या व्यक्तिगत ऋण पर जल्दी भुगतान किया जा सकता है?"
+        ]
+    },
+    {
+        "language": "Hebrew",
+        "questions": [
+            "מהי הריבית על כרטיס האשראי?",
+            "האם יש החזר כספי על כרטיס האשראי?",
+            "מהי העמלה החודשית על חשבון החיסכון?",
+            "האם ניתן לבצע העברות בינלאומיות באמצעות החשבון הזה?",
+            "האם כרטיס האשראי כולל ביטוח נסיעות?"
+        ]
+    }
+]
