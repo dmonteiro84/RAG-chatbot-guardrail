@@ -54,20 +54,33 @@ Response with Guardrails:
 # raw_llm_output:
 "A home loan is a type of loan where you borrow money to purchase a house. The loan is secured against your property, and you can repay it over time with interest."
 # validation_passed: True
+# ...
 ```
 
-### 2. **Testing the Guardrails**
+### 2. **Running Evaluations**
 
-You can run the provided tests to ensure the guardrails work as expected:
+The evaluation process tests the chatbot’s response groundedness, topic relevancy, and language check using datasets. Here are the commands to run different evaluations:
 
+- Language Check:
 ```bash
-pytest tests/
+python -m src.evaluation -t language_check
 ```
 
-This will run the unit tests, including checks for:
-- Allowed product mentions.
-- English-only validation.
-- Grounded responses based on a provided product dataset.
+- Topic Filter:
+```bash
+python -m src.evaluation -t topic_filter
+```
+
+- Groundedness Check:
+```bash
+python -m src.evaluation -t groundedness
+```
+
+### 3. **Running Analysis on Evaluation Results**
+After running evaluations, you can analyze the results using the analysis tool. Here’s an example command to analyze a groundedness evaluation JSON file:
+```bash
+python -m src.analysis --json_file evaluation_results_groundedness_20241002_225734.json --type groundedness
+```
 
 ---
 
@@ -93,14 +106,6 @@ You can customize the guardrails by modifying this XML file to add or change all
 To ensure the guardrails work effectively, we have provided an evaluation dataset in `dataset/evaluation_set.json`. This dataset includes:
 - Allowed queries related to the bank's products.
 - Disallowed queries about unrelated topics (e.g., food, travel, etc.).
-
-To evaluate the guardrails' performance on the dataset, you can run:
-
-```bash
-python tests/test_dataset.py
-```
-
-The system will output the accuracy of the guardrails in flagging invalid responses and passing valid ones.
 
 ---
 
