@@ -15,7 +15,7 @@
 
     <validations>
         <!-- Validation to ensure the response contains only topics from the whitelist -->
-        <contains_only name="allowed_topics" description="The response must only contain topics from the knowledge base." on_fail="reask">
+        <contains_only name="allowed_topics" description="The response must only contain topics from the knowledge base." on_fail="refrain">
             <string name="response" />
             <options>
                 <!-- List of allowed topics as per the task requirements -->
@@ -29,13 +29,13 @@
         </contains_only>
 
         <!-- Validation to ensure the response is grounded in the knowledge base -->
-        <grounded name="groundedness_check" description="The response must be based on the retrieved information from the knowledge base." on_fail="reask">
+        <grounded name="groundedness_check" description="The response must be based on the retrieved information from the knowledge base." on_fail="refrain">
             <string name="response" />
             <retrieved_source name="retrieved_knowledge" />
         </grounded>
 
         <!-- Validation to ensure both user input and output response are in English -->
-        <language name="english_only" description="Ensure both user query and chatbot response are in English." on_fail="reask">
+        <language name="english_only" description="Ensure both user query and chatbot response are in English." on_fail="refrain">
             <string name="response" />
             <string name="user_input" />
             <allowed_languages>
@@ -45,7 +45,7 @@
         </language>
 
         <!-- Validation to handle out-of-scope topics -->
-        <out_of_scope name="out_of_scope_detection" description="Detect and handle topics outside the defined scope." on_fail="reask">
+        <out_of_scope name="out_of_scope_detection" description="Detect and handle topics outside the defined scope." on_fail="refrain">
             <string name="response" />
             <actions>
                 <reask message="I'm sorry, I can only provide information on credit cards, home loans, personal loans, savings accounts, term deposits, and transaction accounts. Please try again." />
@@ -53,7 +53,7 @@
         </out_of_scope>
 
         <!-- Validation for toxic language detection -->
-        <custom_validator name="toxic_language_check" description="Check for toxic or inappropriate language." on_fail="reask">
+        <custom_validator name="toxic_language_check" description="Check for toxic or inappropriate language." on_fail="refrain">
             <string name="response" />
             <validator name="toxic-language" threshold="70" model="unitary/toxic-bert" />
         </custom_validator>
